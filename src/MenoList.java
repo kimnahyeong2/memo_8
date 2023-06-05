@@ -10,6 +10,11 @@ public class MenoList{
         this.memoList = memoList;
     }
 
+    //메모장 리스트 불러오기
+    public List<Memo> getMemoList() {
+        return memoList;
+    }
+
     //메모 최신순 조회
     void reverse(){
         Collections.reverse(memoList);
