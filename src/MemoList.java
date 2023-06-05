@@ -34,9 +34,18 @@ public class MemoList {
         }
     }
     Memo updateMemo(int number){ return null;}
-    Memo deleteMemo(int number){ return null;}
+
+    // 메모 삭제
+    public Memo deleteMemo(int number) {
+        for (Memo memo : memoList) {
+            if (memo.getNumber() == number) {
+                memoList.remove(memo);
+                return memo;
+            }
+        }
+        return null;
+    }
     void update(Memo memo){}
-    void delete(Memo memo){}
 
     //글 삭제후 숫자 정렬
     void reNumber(LinkedList<Memo> memoList){
@@ -54,5 +63,4 @@ public class MemoList {
             return true;
         }
     }
-
 }
