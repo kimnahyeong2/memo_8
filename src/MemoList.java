@@ -2,11 +2,11 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MenoList{
+public class MemoList {
 
     List<Memo> memoList;
 
-    public MenoList(List<Memo> memoList) {
+    public MemoList(List<Memo> memoList) {
         this.memoList = memoList;
     }
 
