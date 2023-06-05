@@ -54,6 +54,13 @@ public class Memo {
     public void setDate(Date date) {
         this.date = date;
     }
-
+    @Override
+    public String toString() {
+        return "Memo{" +
+                "number=" + number +
+                ", password='" + password + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 
 }

@@ -1,10 +1,8 @@
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class MemoList {
 
-    List<Memo> memoList;
+    static List<Memo> memoList;
 
     public MemoList(List<Memo> memoList) {
         this.memoList = memoList;
@@ -19,7 +17,22 @@ public class MemoList {
     void reverse(){
         Collections.reverse(memoList);
     }
-    void addMemo(){}
+    public static void addMemo() {   //메모추가
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("작성자명과 비밀번호를 입력해주세요");
+        String name = sc.nextLine();
+        String password = sc.nextLine();
+        System.out.println("메모내용을 입력해주세요");
+        String content = sc.nextLine();
+
+        memoList.add(new Memo(name, password, content));
+
+        for (Memo element : memoList) {
+            System.out.println(element);
+        }
+    }
     Memo updateMemo(int number){ return null;}
     Memo deleteMemo(int number){ return null;}
     void update(Memo memo){}
@@ -33,6 +46,13 @@ public class MemoList {
         }
     }
     void minusNumber(LinkedList<Memo> memoList){}
-    boolean checkPassword(String password){ return false;}
+    boolean checkPassword(int num, String password){
+        if(memoList.get(num).getPassword() != password){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
 }
