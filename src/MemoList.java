@@ -35,7 +35,17 @@ public class MemoList {
     Memo updateMemo(int number){
         return memoList.get(number);
     }
-    Memo deleteMemo(int number){ return null;}
+
+    // 메모 삭제
+    public Memo deleteMemo(int number) {
+        for (Memo memo : memoList) {
+            if (memo.getNumber() == number) {
+                memoList.remove(memo);
+                return memo;
+            }
+        }
+        return null;
+    }
     void update(Memo memo){
         System.out.println("변경할 내용을 입력해주세요:)");
         String text = sc.nextLine();
