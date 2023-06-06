@@ -2,11 +2,9 @@ import java.util.*;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
-    //private static MemoList memoList;
+    static List<Memo> memoLists = new LinkedList<>();
+    static MemoList memoList = new MemoList(memoLists);
     public static void main(String[] args) {
-        List<Memo> memoLists = new LinkedList<>();
-        MemoList memoList = new MemoList(memoLists);
-
         while(true){
             System.out.println("1. 입력");
             System.out.println("2. 목록 보기");
@@ -18,14 +16,16 @@ public class Main {
 
             if(answer == 1){ //입력
                 MemoList.addMemo();
-                continue;
             }
             else if(answer == 2){ // 목록보기
-                continue;
+                List<Memo> currentMemoList = memoList.getMemoList();
+                for(Memo a : currentMemoList){
+                    System.out.println(a.getNumber() + " " + a.getName() + " " + a.getContent());
+                }
             }
             else if(answer == 3){ // 수정
                 int updateNum = sc.nextInt(); //수정할 글 번호 입력
-                confirmContentNum(memoLists, updateNum); // 수정할 글이 존재하는지 확인
+                confirmContentNum(updateNum); // 수정할 글이 존재하는지 확인
             }
             else if(answer == 4){ // 삭제
                 continue;
@@ -36,30 +36,43 @@ public class Main {
         }
     }
     // 글이 존재하는지 확인
-    private static void confirmContentNum(List<Memo> memoLists, int updateNum) {
+    private static void confirmContentNum(int updateNum) {
+        List<Memo> currentMemoList = memoList.getMemoList();
         boolean result = false;
-        for (Memo list : memoLists) {
+        int num = currentMemoList.indexOf(currentMemoList.get(updateNum));
+
+        if(num == -1){
+            System.out.println("해당 메모는 존재하지 않습니다:)");
+            return;
+        }
+        else{
+            System.out.println(currentMemoList.get(updateNum).getName());
+            System.out.println("비밀번호를 입력해주세요:)");
+            String pwd = sc.next();
+            comparePwd(currentMemoList, updateNum, pwd);
+        }
+/*        for (Memo list : currentMemoList) {
             if (list.getNumber() == updateNum) {
                 System.out.println(list.getName());
                 System.out.println("비밀번호를 입력해주세요:)");
                 String pwd = sc.next();
-                comparePwd(memoLists, updateNum, pwd);
+                comparePwd(currentMemoList, updateNum, pwd);
             }
         }
         if(!result){
-            System.out.println("수정불가");
+            System.out.println("해당 메모는 존재하지 않습니다:)");
             return;
-        }
+        }*/
     }
 
-    private static void comparePwd(List<Memo> memoLists, int num, String pwd) {
-        String myPwd = memoLists.get(num).getPassword();
-/*        boolean check = memoList.checkPassword(num, pwd);
+    private static void comparePwd(List<Memo> currentMemoList, int updateNum, String pwd) {
+        String myPwd = currentMemoList.get(updateNum).getPassword();
+        boolean check = memoList.checkPassword(updateNum, pwd);
         if(check){
-            //updateMemo();
+            memoList.update(memoList.updateMemo(updateNum));
         }
         else{
             System.out.println("비밀번호가 일치하지 않습니다:)");
-        }*/
+        }
     }
 }
