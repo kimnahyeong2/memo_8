@@ -28,6 +28,7 @@ public class Main {
                 confirmContentNum(memoLists, updateNum); // 수정할 글이 존재하는지 확인
             }
             else if(answer == 4){ // 삭제
+                delete(memoList, sc);
                 continue;
             }
             else{ // 종료
@@ -61,5 +62,19 @@ public class Main {
         else{
             System.out.println("비밀번호가 일치하지 않습니다:)");
         }*/
+    }
+
+    // 메모 존재 여부 확인
+    public static void delete(MemoList memoList, Scanner sc) {
+        System.out.println("삭제할 글 번호");
+        int deleteNum = sc.nextInt();
+        Memo memo = memoList.deleteMemo(deleteNum);
+        if (memo == null) {
+            System.out.println("번호가 존재하지 않습니다.");
+            return;
+        } else {
+            memoList.deleteMemo(memo.getNumber());
+            System.out.println("삭제가 완료 됐습니다.");
+        }
     }
 }
