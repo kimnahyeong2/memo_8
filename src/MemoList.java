@@ -1,9 +1,10 @@
 import java.util.*;
 
 public class MemoList {
+    static Scanner sc = new Scanner(System.in);
 
     static List<Memo> memoList;
-
+    Memo memo;
     public MemoList(List<Memo> memoList) {
         this.memoList = memoList;
     }
@@ -19,8 +20,6 @@ public class MemoList {
     }
     public static void addMemo() {   //메모추가
 
-        Scanner sc = new Scanner(System.in);
-
         System.out.println("작성자명과 비밀번호를 입력해주세요");
         String name = sc.nextLine();
         String password = sc.nextLine();
@@ -33,7 +32,9 @@ public class MemoList {
             System.out.println(element);
         }
     }
-    Memo updateMemo(int number){ return null;}
+    Memo updateMemo(int number){
+        return memoList.get(number);
+    }
 
     // 메모 삭제
     public Memo deleteMemo(int number) {
@@ -45,7 +46,13 @@ public class MemoList {
         }
         return null;
     }
-    void update(Memo memo){}
+    void update(Memo memo){
+        System.out.println("변경할 내용을 입력해주세요:)");
+        String text = sc.nextLine();
+        memo.setContent(text);
+        System.out.println("변경이 완료되었습니다:)");
+    }
+    void delete(Memo memo){}
 
     //글 삭제후 숫자 정렬
     void reNumber(LinkedList<Memo> memoList){
@@ -63,4 +70,5 @@ public class MemoList {
             return true;
         }
     }
+
 }
